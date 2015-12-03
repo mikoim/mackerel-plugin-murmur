@@ -21,11 +21,13 @@ var graphdef = map[string](mp.Graphs){
 	},
 }
 
+// MurmurPlugin mackerel plugin for Murmur
 type MurmurPlugin struct {
 	Host    string
 	Timeout uint64
 }
 
+// FetchMetrics interface for mackerelplugin
 func (m MurmurPlugin) FetchMetrics() (map[string]interface{}, error) {
 	resp, err := mumble.Ping(m.Host, time.Millisecond * time.Duration(m.Timeout))
 
@@ -41,6 +43,7 @@ func (m MurmurPlugin) FetchMetrics() (map[string]interface{}, error) {
 	return metrics, nil
 }
 
+// GraphDefinition interface for mackerelplugin
 func (m MurmurPlugin) GraphDefinition() map[string](mp.Graphs) {
 	return graphdef
 }
